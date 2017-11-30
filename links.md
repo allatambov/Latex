@@ -10,13 +10,13 @@
 
 ### Прочие материалы
 
-*  Документация от ShareLaTeX: <https://ru.sharelatex.com/learn>
-
-    Основы работы в LaTeX по разделам + информация по ShareLaTeX
+*  Документация от ShareLaTeX: <https://ru.sharelatex.com/learn> (Основы работы в LaTeX по разделам + информация по ShareLaTeX)
 
 *  Викиучебник по LaTeX: <https://en.wikibooks.org/wiki/LaTeX>
 
 *  Подробное [руководство](https://www.tug.org/pracjourn/2007-1/mori/mori.pdf) по таблицам
+
+*  Сервис для создания таблиц и их конвертации в код LaTeX: <https://www.tablesgenerator.com/>
 
 * Графические библиотеки tikz и pgf: 
 
