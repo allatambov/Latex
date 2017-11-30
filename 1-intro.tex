@@ -1,0 +1,590 @@
+
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+
+% для кириллицы: добавить russian в babel
+% добавить кодировку шрифта T2A
+
+\usepackage[T2A]{fontenc}
+\usepackage[english, russian]{babel}
+
+% для вставки кода
+\usepackage{fancyvrb}
+
+% для одновременного кода и текста
+\usepackage{showexpl}
+\lstloadlanguages{[LaTeX]Tex} 
+\lstset{
+    basicstyle=\ttfamily\small,  
+    explpreset={numbers=none},
+    breaklines=true} 
+
+% для ссылок
+\usepackage{hyperref}
+
+ % для цветного текста
+\usepackage{color}
+
+% для отступа в первом абзаце
+\usepackage{indentfirst} 
+\parindent=1.2cm % длина отступа в абзацах
+
+% для продвинутых списков
+\usepackage{enumitem} 
+
+% для вставки картинок
+\usepackage{graphicx}
+
+% для математики
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\begin{document}
+
+\section{Работа с текстом.}
+
+\subsection{Символы в \LaTeX{}.} 
+
+\subsubsection{Специальные символы.} В \LaTeX{} есть специальные символы, которые не получится включить в документ просто так, потому что они будут распознаваться им как служебные знаки, а не как часть текста: 
+
+\begin{center}
+\begin{BVerbatim}
+% & $ _ # { } ~ \
+\end{BVerbatim}
+\end{center}
+
+ Чтобы включить их в текст, нужно поставить перед ними обратный слэш, а для самого обратного слэша использовать специальную команду: 
+ 
+ \begin{LTXexample}
+ \%, \&, \$, \_, \#, \{, \}, \~{},
+  \textbackslash{}.
+  \end{LTXexample}
+
+\subsubsection{Тире и кавычки.}
+
+Чтобы получить тире, нужно поставить две черточки рядом, без пробела. 
+
+Дефис: -
+
+Тире: --
+
+Длинное тире: ---
+
+В \LaTeX{} используются два вида кавычек: "лапки" (приняты в англоязычных текстах), и <<ёлочки>> (приняты в русскоязычных текстах). 
+
+ \begin{LTXexample}
+`` '' 
+<<>> 
+  \end{LTXexample}
+
+\subsection{Выделение текста.}
+
+Текст можно выделять по-разному. Во-первых, можно использовать \textit{курсив}. 
+
+\begin{center}
+\begin{BVerbatim}
+\textit{курсив}
+\end{BVerbatim}
+\end{center}
+
+
+Во-вторых, \textbf{полужирное начертание}. 
+
+\begin{center}
+\begin{BVerbatim}
+\textbf{полужирное начертание}
+\end{BVerbatim}
+\end{center}
+
+В-третьих, текст можно просто \underline{подчеркивать}. 
+
+\begin{center}
+\begin{BVerbatim}
+\underline{подчеркивать}
+\end{BVerbatim}
+\end{center}
+
+Поиграем с начертанием текста. Сделаем \textbf{\textit{полужирный курсив}}:
+
+\begin{center}
+\begin{BVerbatim}
+\textbf{\textit{полужирный курсив}}
+\end{BVerbatim}
+\end{center}
+
+Посмотрим на \textsc{научный} шрифт. 
+
+\begin{center}
+\begin{BVerbatim}
+\textsc{научный} шрифт
+\end{BVerbatim}
+\end{center}
+
+Добавим \texttt{простой текст}, будто набранный на печатной машинке. 
+
+\begin{center}
+\begin{BVerbatim}
+\texttt{простой текст}
+\end{BVerbatim}
+\end{center}
+
+Для того, чтобы включить в документ цветной текст, нужно в преамбуле подгрузить пакет \texttt{color}:
+
+\begin{center}
+\begin{BVerbatim}
+\usepackage{color}
+\end{BVerbatim}
+\end{center}
+
+При выделении текста цветом важно не потерять двойные фигурные скобки. Например, так выглядит {\color{red} красный цвет}. 
+
+\begin{center}
+\begin{BVerbatim}
+Например, так выглядит {\color{red} красный цвет}.
+\end{BVerbatim}
+\end{center}
+
+Если не поставить внешние фигурные скобки, то весь текст (до конца документа) после \texttt{\textbackslash color\{\}} будет выделен тем  цветом, который указан в \texttt{\textbackslash color\{\}}.
+
+Как можно увидеть в этом файле, в документ можно включать куски кода (любого, \LaTeX{} в том числе), причем код, заключенный в специальное окружение \texttt{BVerbatim} распознается как обычный текст, а не как служебные символы и команды. Еще есть специальное окружение \texttt{LTXexample}, которое позволяет включать код \LaTeX{} и сразу показывать результат его исполнения. О загрузке необходимых пакетов и настройке параметров -- см. преамбулу. А примеров использования этих окружений в данном файле много. Внимание: \texttt{LTXexample} не работает с кириллицей!
+
+\subsection{Положение текста.}
+
+\subsubsection{Отступы и переход на новую строку.} По умолчанию в \LaTeX{} отстутствует отступ в первом абзаце (и в первых абзацах каждого нового раздела). Чтобы добавить его, нужно в преамбуле подгрузить пакет \texttt{indentfirst}. 
+
+\begin{center}
+\begin{BVerbatim}
+\usepackage{indentfirst}
+\end{BVerbatim}
+\end{center}
+
+Величину отступа (не только в первом абзаце, но и по всему тексту) можно регулировать. Например, в этом документе длина отступа составляет 1.2 сантиметра, потому что в преамбуле написана соответствующая строчка:
+
+\begin{center}
+\begin{BVerbatim}
+\parindent{1.2cm}
+\end{BVerbatim}
+\end{center}
+
+Как можно заметить, \LaTeX{} не реагирует на количество пробелов и переход на новую строку с помощью \textit{Enter}. Чтобы перейти к следующему абзацу, нужно использовать команду \texttt{\textbackslash par}. Пример:
+
+\textit{Первый абзац. Много-много текста. Нужно набрать текста на две-три строчки. Абзац в одну строчку -- не абзац.  Кажется, получилось.}  \par
+\textit{А теперь второй абзац. Можно и покороче.}
+
+Как можно заметить, до этого в документе команда \texttt{\textbackslash par} нигде не использовалась, но текст все равно был организован в абзацы с отступами. На самом деле, для перехода на новую строку с сохранением отступа (<<красной строки>>) достаточно в tex-файле оставить пустую строку:
+
+\begin{LTXexample}
+line 1
+
+line 2
+\end{LTXexample}
+
+
+Чтобы просто перейти на новую строку, не создавая отступа для нового абзаца, можно использовать двойной обратный слэш. \\ 
+
+\begin{LTXexample}
+line 1 \\
+line 2
+\end{LTXexample}
+
+Увеличивать вертикальные отступы тоже можно. Так выглядят строки с обычным отступом.
+
+\begin{LTXexample}
+Sentence 1.  \\
+Sentence 2. 
+\end{LTXexample}
+
+Например, так будут выглядеть строки со средним отступом (команда \texttt{\textbackslash medskip}): 
+
+\begin{LTXexample}
+Sentence 1. \medskip \\
+Sentence 2. 
+\end{LTXexample}
+
+А так с большим (команда \texttt{\textbackslash bigskip}): 
+
+\begin{LTXexample}
+Sentence 1. \bigskip \\
+Sentence 2. 
+\end{LTXexample}
+
+\subsection{Переход на новую страницу.}
+
+Молча переходим с помощью команды \texttt{\textbackslash newpage}. 
+
+\newpage
+
+\subsubsection{Выравнивание текста.}
+
+Текст можно расположить по центру, выравнять по левому или правому краю. 
+
+\begin{center}
+    \textbf{Гениальное эссе на избитую тему}
+\end{center}
+
+\begin{flushleft}
+Оценка:
+\end{flushleft}
+
+\begin{flushright}
+Выполнил: \\
+студент группы №000 \\
+Шаблон Шаблонович Шаблонов  \bigskip \\
+\end{flushright}
+
+\textbf{Код для примера выше:}  \bigskip\\
+
+\begin{BVerbatim}
+\begin{center}
+    \textbf{Гениальное эссе на избитую тему}
+\end{center}
+
+\begin{flushleft}
+Оценка:
+\end{flushleft}
+
+\begin{flushright}
+Выполнил: \\
+студент группы №000 \\
+Шаблон Шаблонович Шаблонов  \bigskip \\
+\end{flushright}
+\end{BVerbatim}
+
+ \ \ \medskip\\
+
+Более подробно посмотрим на выравнивание, когда будем обсуждать, как создать титульный лист.
+
+\section{Списки.}
+
+Списки бывают нумерованные и ненумерованные. Любой список заключается с специальное окружение, внутри которого пункты списка начинаются с команды \texttt{\textbackslash item}. Окружение для нумерованных списков \texttt{enumerate}, а для ненумерованных -- \texttt{itemize}. \medskip\\
+
+\textbf{Нумерованные списки:}
+\begin{LTXexample}
+\begin{enumerate}
+\item Firstly, 
+\item Secondly,
+\item Thirdly,
+\end{enumerate}
+\end{LTXexample}
+
+\textbf{Ненумерованные списки:}
+\begin{LTXexample}
+\begin{itemize}
+\item No number 1
+\item No number 2
+\item No number 3
+\end{itemize}
+\end{LTXexample}
+
+По умолчанию в качестве маркера для пунктов используется точка, но при желании его можно поменять -- указать в квадратных скобках сразу после \texttt{\textbackslash item}:
+\begin{LTXexample}
+\begin{itemize}
+\item[-] No number 1
+\item[-] No number 2
+\item[-] No number 3
+\end{itemize}
+\end{LTXexample}
+
+Списки можно сочетать -- получать многоуровневые списки:
+\begin{LTXexample}
+\begin{enumerate}
+\item Point 1
+\begin{enumerate}
+    \item Subsection 1
+    \item Subsection 2
+    \item 
+    \begin{enumerate}
+         \item Stop this recursion!
+         \begin{enumerate}
+             \item Immediately!
+         \end{enumerate}
+    \end{enumerate}
+\end{enumerate}
+\item Point 2
+\item Pint 3
+\end{enumerate}
+\end{LTXexample}
+
+
+Для более продвинутой работы со списками нужен пакет \texttt{enumitem}. Например, можно убрать отступы перед пунктами, добавив опцию \texttt{leftmargin}:
+\begin{LTXexample}
+\begin{itemize}[leftmargin = *]
+\item Point 1
+\item Point 2
+\item Point 3
+\end{itemize}
+\end{LTXexample}
+
+\section{Таблицы.}
+
+Для создания таблицы в \LaTeX{} используются два окружения. Окружение \texttt{table} -- для самой таблицы (в нем указывается положение таблицы, ее название и код для таблицы), окружение \texttt{tabular} -- собственно для строк и столбцов.  \medskip
+
+
+\textbf{Пример простой таблицы:}
+
+\begin{LTXexample}
+\begin{table}[ht!] 
+\begin{tabular}{lll} 
+name & age & height \\
+\hline
+Ann & 24 & 163 \\
+Peter & 10 & 142 \\
+\hline
+\end{tabular}
+\end{table}
+\end{LTXexample}
+
+\textbf{Небольшой разбор кода.} В квадратных скобках после \texttt{table} указывается положение таблицы. У \LaTeX{} есть свои представления о том, где располагать таблицу, и эти представления могут не совпадать с нашими желаниями. Поэтому мы можем написать \texttt{[ht!]}, чтобы настойчиво сообщить \LaTeX{}, что таблица должна быть здесь (\texttt{h} -- от \textit{here}). В фигурных скобках после \texttt{tabular} перечисляются буквы \texttt{l}. Число букв равно числу столбцов в таблице, а сами буквы отвечают за выравнивание текста в этих столбцах (\texttt{l} -- по левому краю, \texttt{r} -- по правому краю, \texttt{c} -- по центру). В нашем случае в таблице нет разделителей между столбцами, поэтому буквы просто перечислены подряд. Таблица заполняется по строкам, столбцы в каждой строке отделяются с помощью \&. Для перехода на новую строку таблицы так же используется двойной обратный слэш.  Важно контролировать число знаков \&: их всегда должно быть на один меньше, чем число столбцов в таблице.
+
+\textbf{Еще пример простой таблицы.} Другая таблица, но уже с заголовком (\texttt{\textbackslash caption}) и выравниванием по центру (\texttt{\textbackslash centering}): 
+
+\begin{LTXexample}
+\begin{table}[ht!]
+\caption{My table.}
+\centering
+\begin{tabular}{|r|r|} 
+\hline
+name & age \\
+\hline
+Ann &  \\
+Peter & 10 \\
+\hline
+\end{tabular}
+\end{table}
+\end{LTXexample}
+
+Ширину столбцов можно менять -- задавать вручную -- см. после \texttt{tabular}:
+
+\begin{LTXexample}
+\begin{table}[ht!]
+\caption{This table is also mine.}
+\centering
+\begin{tabular}{|p{2cm}|p{2cm}|} 
+\hline
+name & age \\
+\hline
+Ann &  \\
+\hline
+Peter & 10 \\
+\hline
+\end{tabular}
+\end{table}
+\end{LTXexample}
+
+Для создания больших или более сложных таблиц можно воспользоваться полезным ресурсом для автоматической генерации таблиц онлайн: \href{https://www.tablesgenerator.com/}{https://www.tablesgenerator.com/}. В нем можно создавать таблицы и оформлять их <<привычным>> образом (почти как в Excel или Google Tables): выбирать границы ячеек, объединять ячейки, раскрашивать их и так далее. Сервис будет автоматически преобразовывать готовую таблицу в код \LaTeX{}, который потом можно скопировать в документ (tex-файл).
+
+\section{Картинки.}
+
+После таблиц нам ничего не страшно. Для того, чтобы \LaTeX{} свободно загружал картинки из файлов с разными расширениями (jpg, jpeg, png и другие), в преамбуле нужно догрузить пакет \texttt{graphicx}.
+
+\begin{center}
+\begin{BVerbatim}
+\usepackage{graphicx}
+\end{BVerbatim}
+\end{center}
+
+\newpage
+
+Картинки из внешних файлов в \LaTeX{} включаются в текст аналогично таблицам, внутри специального окружения, окружения \texttt{figure}: 
+
+\begin{LTXexample}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[scale=0.15]{desktop.png}
+    \caption{Beautiful picture}
+\end{figure}
+\end{LTXexample}
+
+\textbf{Пояснения к коду.} Картинка добавляется с помощью команды  \texttt{\textbackslash includegraphics}, в которой в фигурных скобках вписывается название файла. Файл должен лежать рядом с tex-файлом (или быть загружен на Sharelatex). Если \LaTeX{} установлен на компьютер, то файл может лежать в любом месте, не рядом с tex-файлом -- тогда в фигурных скобках нужно будет прописать полный путь к нему (например, \texttt{C:/Users/AllaT/Documents/desktop.png}).  Опция \texttt{scale} в квадратных скобках добавлена, чтобы уменьшить размер картинки (0.15 означает, какую часть от исходного размера картинки составляет новый размер картинки). Можно было бы указать желаемый размер картинки явно, задав ширину и высоту, но тут важно хорошо подобрать значения, чтобы не деформировать картинку (\texttt{scale} изменяет размер пропорионально. а все \texttt{width} и \texttt{hight} -- уже на нашей совести):
+
+\begin{LTXexample}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=2cm, height=4cm]{desktop.png}
+    \caption{Beautiful, but deformed picture}
+\end{figure}
+\end{LTXexample}
+
+
+И да, картинки (и таблицы тоже) можно добавлять и без окружения \texttt{figure} (для таблиц \texttt{table}). Тогда она будет без названия и выравнивания:
+
+\begin{LTXexample}
+ \includegraphics[scale=0.15]{desktop.png}
+ \end{LTXexample}
+
+
+\section{Математика в \LaTeX.}
+
+Вообще формулы в текст можно добавлять и не догружая дополнительных пакетов, но удобнее сразу догрузить пакеты для математических символов и операций (см. преамбулу):
+
+\begin{BVerbatim}
+\usepackage{amssymb}
+\usepackage{amsmath}
+ \end{BVerbatim}
+
+\subsection{Формулы.}
+
+Формулы заключаются в знаки доллара. Если нужно, чтобы формула была посередине, то нужны двойные знаки доллара. Сравним:
+
+\begin{LTXexample}
+$P(A) = 2/3$ \\ 
+$$P(A) = 2/3$$
+ \end{LTXexample}
+
+\subsection{Символы и операторы.} 
+
+\textbf{Умножение:}
+
+\begin{LTXexample}
+$a \cdot b$ \\ 
+$c \times d$
+ \end{LTXexample}
+ 
+ \textbf{Дроби:}
+
+\begin{LTXexample}
+ $\frac{2}{3}$ \\
+ $\dfrac{\frac{a}{b} \cdot \frac{b}{a}}{8}$
+ \end{LTXexample}
+ 
+\textbf{Кванторы:} 
+
+\begin{LTXexample}
+ $\forall i $ \\
+ $\exists i$
+ \end{LTXexample}
+ 
+\textbf{Бесконечность:}
+
+\begin{LTXexample}
+$\infty$
+ \end{LTXexample}
+
+\textbf{Множества:}
+
+\begin{LTXexample}
+$1 \in \{1,2,3\}$ \\ 
+$a \in A$ \\
+$b \notin A$ \\
+$C \subset D$ \\
+$C \subseteq D$ \\
+$C \ne D$ \\
+$A \cap B$ \\
+$A \cup B$ \\
+$\varnothing$ \\
+$\emptyset$
+ \end{LTXexample}
+
+
+\subsection{Греческие буквы.}
+
+\begin{LTXexample}
+$\alpha$, $\beta$, \\
+$\epsilon$ \\
+$\varepsilon$  \\
+$\Gamma$, $\Delta$, $\Theta$.
+ \end{LTXexample}
+
+\subsection{Степени и индексы.}
+
+\begin{LTXexample}
+$y_i = \beta_0 + \beta_1 \cdot x + \beta_2 \cdot x^2$
+ \end{LTXexample}
+
+Но если индексы или степени включают больше одной цифры, то нужно не забыть фигурные скобки:
+
+\begin{LTXexample}
+$y_{i1} = \beta_{01}+ \beta_{11} \cdot x + \beta_{21} \cdot x^2$
+ \end{LTXexample}
+ 
+В качестве индексов можно использовать и буквы:
+
+\begin{LTXexample}
+$income_{first}$
+ \end{LTXexample}
+ 
+ С пробелом:
+ 
+ \begin{LTXexample}
+$income_{first \mbox{ } year}$
+ \end{LTXexample}
+ 
+Текст на кириллице тоже можно добавлять в формулы:
+
+\begin{BVerbatim}
+$income_\textup{год}$  
+\end{BVerbatim}
+
+$income_\textup{год}$ \\
+
+\subsection{Надстрочные символы.}
+
+\begin{LTXexample}
+$\bar{x}$ \\
+$\hat{y}$ \\
+$\tilde{v}$ \\
+$\hat{\tilde{y}}$ 
+\end{LTXexample}
+% 
+
+\subsection{Суммы, интегралы, пределы, производные.}
+
+\textbf{Сумма:}
+
+\begin{LTXexample}
+$\sum_{i=1}^{n} x_i$ \\
+$\sum\limits_{i=1}^{n} x_i$ 
+\end{LTXexample}
+
+\textbf{Произведение:}
+
+\begin{LTXexample}
+$\prod_{i=1}^{n} x_i$ \\
+$\prod\limits_{i=1}^{n} x_i$ 
+\end{LTXexample}
+
+\textbf{Интеграл:}
+
+\begin{LTXexample}
+$\int (x + x^2)dx$  \\
+$\int\limits_{a}^{b} (x + x^2)dx$ 
+\end{LTXexample}
+
+\textbf{Предел:}
+
+\begin{LTXexample}
+$$\lim_{x \rightarrow \infty} e^{-x} = 0$$ 
+\end{LTXexample}
+
+\textbf{Производная:}
+
+Обычная:
+
+\begin{LTXexample}
+$(x+x^2)'$ \\
+$\frac{df}{dx}$
+\end{LTXexample}
+
+Частная:
+
+\begin{LTXexample}
+$\frac{\partial f}{\partial x}$ \\
+$\frac{\partial^2 f}{\partial x^2}$
+\end{LTXexample}
+
+\subsection{Прочее.}
+
+\begin{LTXexample}
+$\mathbb{R}$,  $\mathbb{Z}$, $\mathbb{Q}$ \\
+$A \rightarrow B$ \\
+$A \leftarrow B$ \\
+$A \Rightarrow B$ \\
+$A \Leftarrow B$ \\
+$A \Leftrightarrow B$
+\end{LTXexample}
+
+Про более сложные конструкции (матрицы, системы уравнений), см., например, \href{https://en.wikibooks.org/wiki/LaTeX/Mathematics}{здесь}. 
+
+\href{http://tug.ctan.org/info/symbols/comprehensive/symbols-a4.pdf}{Список} всех символов (не только математических) в \LaTeX{}. 
+
+\end{document}
